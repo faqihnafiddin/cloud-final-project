@@ -1,0 +1,27 @@
+# Node Modules
+node_modules/
+
+# Environment
+.env
+
+# Log
+*.log
+
+# Dependency Cache
+npm-debug.log*
+
+# VS Code
+.vscode/
+
+# OS Files
+.DS_Store
+
+# Docker
+*.pid
+
+# Coverage
+coverage/
+
+# Build
+dist/
+build/
