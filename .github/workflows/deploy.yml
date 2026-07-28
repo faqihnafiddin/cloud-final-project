@@ -50,12 +50,3 @@ jobs:
             docker compose pull
             docker compose down
             docker compose up -d
-
-  - name: Run Backend
-  env:
-    DB_URL: ${{ secrets.DB_URL }}
-    JWT_SECRET: ${{ secrets.JWT_SECRET }}
-    PORT: ${{ secrets.PORT }}
-  run: |
-    npm install
-    npm test
