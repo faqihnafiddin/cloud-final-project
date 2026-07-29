@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   frontend:
     image: faqihnafiddin/frontend:latest
@@ -21,6 +23,9 @@ services:
       - "9090:9090"
     volumes:
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    # Tambahkan ini agar Prometheus bisa memanggil 'localhost:9100' atau service lain dengan lancar
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   grafana:
     image: grafana/grafana
@@ -28,6 +33,10 @@ services:
       - "3000:3000"
 
   node-exporter:
-    image: prom/node-exporter
-    ports:
-      - "9100:9100"
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    restart: unless-stopped
+    network_mode: "host"
+    pid: "host"
+    volumes:
+      - '/:/host:ro,rslave'
